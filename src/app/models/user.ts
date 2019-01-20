@@ -1,0 +1,32 @@
+export class User {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    middleName: string;
+    nickName: string;
+    gender: string;
+    birthDate: Date;
+    profileImgUrl: string;
+    isEnabled: boolean;
+    phone: string;
+    phoneExtension: string;
+    mobile: string;
+    fax: string;
+    userName: string;
+    password: string;
+    email: string;
+    emailConfirmed: boolean;
+    twoFactor: boolean;
+    loginCount: number;
+    failedCount: number;
+    isAdvanced: boolean;
+    createdBy: string;
+    createdDate: Date;
+    modifiedBy: string;
+    modifiedDate: Date;
+    homeAddress: any;
+    mailingAddress: any;
+    hr: any;
+    department: any;
+    role: any;
+}
