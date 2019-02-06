@@ -6,7 +6,7 @@
   <li *ngFor="let item of users">{{item.lastName}}</li>
 </ul>
 
-<p *ngIf="user"> userName: {{user.userName}} </p>
+<p *ngIf="user"> userName: {{user.userName}} - {{user.email}}</p>
 
 <form #f="ngForm" (ngSubmit)="submit(f)">
 
