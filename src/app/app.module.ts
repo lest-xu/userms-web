@@ -18,6 +18,11 @@ import { AdminAddressComponent } from './admin/admin-address/admin-address.compo
 import { AdminHrComponent } from './admin/admin-hr/admin-hr.component';
 import { AdminAppComponent } from './admin/admin-app/admin-app.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { TimeoffComponent } from './apps/timeoff/timeoff.component';
+import { AdminInventoryComponent } from './admin/admin-inventory/admin-inventory.component';
+import { AdminLogsComponent } from './admin/admin-logs/admin-logs.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdComponentsModule } from './md-components/md-components.module';
 
 @NgModule({
   declarations: [
@@ -33,17 +38,34 @@ import { ProfileComponent } from './account/profile/profile.component';
     AdminAddressComponent,
     AdminHrComponent,
     AdminAppComponent,
-    ProfileComponent
+    AdminInventoryComponent,
+    ProfileComponent,
+    TimeoffComponent,
+    AdminLogsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MdComponentsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'account/login', component: SigninComponent },
+      { path: 'account/signup', component: SignupComponent },
+      { path: 'account/profile', component: ProfileComponent },
       { path: 'admin/users', component: UsersComponent },
-    ])
+      { path: 'admin/addresses', component: AdminAddressComponent },
+      { path: 'admin/apps', component: AdminAppComponent },
+      { path: 'admin/departments', component: AdminDepartmentComponent },
+      { path: 'admin/hr', component: AdminHrComponent },
+      { path: 'admin/roles', component: AdminRoleComponent },
+      { path: 'admin/users', component: UsersComponent },
+      { path: 'admin/inventories', component: AdminInventoryComponent },
+      { path: 'admin/logs', component: AdminLogsComponent },
+      { path: 'apps/timeoff', component: TimeoffComponent },
+    ]),
+    BrowserAnimationsModule
   ],
   exports: [RouterModule],
   providers: [],

@@ -1,3 +1,19 @@
-<p>
-  signin works!
-</p>
+<div class="text-center">
+  <form class="form-signin" #f="ngForm" (ngSubmit)="login(f)">
+    <img class="mb-4" src="../../../assets/logo-512.png" alt="" width="140" height="140">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input ngModel #email type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+    
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input ngModel #password type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+
+    <div class="mb-3 text-left">
+      <span *ngIf="errorMsg" class="text-danger ">{{ this.errorMsg }}</span>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; USERMS All rights reserved<br/> User Management System</p>
+  </form>
+</div>
+

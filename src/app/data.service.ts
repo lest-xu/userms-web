@@ -20,7 +20,7 @@ export class DataService {
   readonly ApiUrlAuth = this.ApiUrlRoot + 'auth/';
   readonly ApiUrlSignup = this.ApiUrlRoot + 'signup/';
   // tslint:disable-next-line:max-line-length
-  readonly token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzM5NzAzNmNkZDBlMTM5ZTRhODVjNTgiLCJpYXQiOjE1NDczMTE5MzZ9.M54jnZjX4XBBmtdCy-cU305xE-9vbBwSFx-tYbzOpW8';
+  readonly token = null;
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -29,28 +29,34 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any> {
-    const headers = this.setHttpHeaders();
+  getUsers(token:string): Observable<any> {
+    const headers = this.setHttpHeaders(token);
     return this.http.get(this.ApiUrlUsers, { headers: headers });
   }
 
 
-  getUserById(id: string): any {
-    const headers = this.setHttpHeaders();
+  getUserById(id: string,token:string): any {
+    const headers = this.setHttpHeaders(token);
     return this.http.get(this.ApiUrlUsers + id, { headers: headers });
   }
 
-  signIn(user): Observable<any> {
-    const headers = this.setHttpHeaders();
+  login(user): Observable<any> {
+    const headers = this.setHttpHeadersLogin();
 
     return this.http.post(this.ApiUrlAuth, user, { headers: headers});
   }
 
 
-  setHttpHeaders() {
+  setHttpHeadersLogin() {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('x-auth-token', this.token);
+    return headers;
+  }
+
+  setHttpHeaders(token: string) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('x-auth-token', token);
 
     return headers;
   }
