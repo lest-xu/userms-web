@@ -23,6 +23,7 @@ import { AdminInventoryComponent } from './admin/admin-inventory/admin-inventory
 import { AdminLogsComponent } from './admin/admin-logs/admin-logs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdComponentsModule } from './md-components/md-components.module';
+import { SettingsComponent } from './admin/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MdComponentsModule } from './md-components/md-components.module';
     AdminInventoryComponent,
     ProfileComponent,
     TimeoffComponent,
-    AdminLogsComponent
+    AdminLogsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,7 @@ import { MdComponentsModule } from './md-components/md-components.module';
       { path: 'admin/users', component: UsersComponent },
       { path: 'admin/inventories', component: AdminInventoryComponent },
       { path: 'admin/logs', component: AdminLogsComponent },
+      { path: 'admin/settings', component: SettingsComponent },
       { path: 'apps/timeoff', component: TimeoffComponent },
     ]),
     BrowserAnimationsModule

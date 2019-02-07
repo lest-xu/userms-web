@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
+import { NavBarComponent } from 'src/app/navs/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-signin',
@@ -10,16 +11,17 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  token: any;
+  token: [];
   errorMsg: string;
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    //get x-auth-token
-    this.token = localStorage.getItem('x-auth-token');
-    if (this.token) {
-      //redirect to home page
+    // get x-auth-token
+    this.dataService.token.subscribe(i => this.token = i);
+    console.log(this.token.length > 0);
+    if (this.token.length > 0) {
+      // redirect to home page
       this.redirectHome();
     }
 
@@ -32,11 +34,12 @@ export class SigninComponent implements OnInit {
 
     // console.log(f.value);
     this.dataService.login(f.value).subscribe(data => {
-      
-      this.token = data;
-      localStorage.setItem('x-auth-token', this.token);
 
-      //redirect to home page
+      this.dataService.setToken(data);
+      this.dataService.token.subscribe(i => this.token = i);
+      localStorage.setItem('x-auth-token', data);
+
+      // redirect to home page
       this.redirectHome();
     }, err => {
       // console.log('err', err);

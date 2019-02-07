@@ -20,12 +20,12 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.token = localStorage.getItem('x-auth-token');
 
-    this.dataService.getUsers(this.token).subscribe(i => {
+    this.dataService.getUsers().subscribe(i => {
       this.users = i;
       console.log(this.users);
     });
 
-    this.dataService.getUserById('5c42942cdf6e133e44c85a2c',this.token).subscribe( i => {
+    this.dataService.getUserById('5c42942cdf6e133e44c85a2c', this.token).subscribe( i => {
       this.user = i;
     });
 
