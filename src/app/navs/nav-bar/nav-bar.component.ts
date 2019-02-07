@@ -9,30 +9,25 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  navToken: any;
+  token: any;
 
   constructor(public dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.dataService.token.subscribe(i => {
-      this.navToken = i;
-
-      console.log('navToken init', i);
+      this.token = i;
     });
   }
 
   signout() {
-    console.log('navToken', this.navToken);
-    if (this.navToken) {
-      this.navToken = null;
+    if (this.token) {
+      this.token = null;
       this.dataService.setToken([]);
       localStorage.removeItem('x-auth-token');
-      this.redirectLogin();
+
     }
   }
 
-  private redirectLogin() {
-    this.router.navigateByUrl('/account/login');
-  }
+
 
 }
