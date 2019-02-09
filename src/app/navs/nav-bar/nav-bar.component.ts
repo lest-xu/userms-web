@@ -10,10 +10,15 @@ import { Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
 
   token: any;
+  theme: String;
+  themes: Array<String>;
 
   constructor(public dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+
+    this.themes = ['primary', 'secondary', 'success', 'warning', 'danger'];
+    this.theme = 'danger';
     this.dataService.token.subscribe(i => {
       this.token = i;
     });
