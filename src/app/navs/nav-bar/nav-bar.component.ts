@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,7 +14,7 @@ export class NavBarComponent implements OnInit {
   theme: String;
   themes: Array<String>;
 
-  constructor(public dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
 
@@ -30,9 +31,7 @@ export class NavBarComponent implements OnInit {
   signout() {
     if (this.token) {
       this.token = null;
-      this.dataService.setToken([]);
-      localStorage.removeItem('x-auth-token');
-
+      this.auth.signout();
     }
   }
 

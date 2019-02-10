@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
 import { NavBarComponent } from 'src/app/navs/nav-bar/nav-bar.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -15,7 +16,7 @@ export class SigninComponent implements OnInit {
   theme: String;
   errorMsg: String;
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     // get x-auth-token
@@ -37,7 +38,7 @@ export class SigninComponent implements OnInit {
     this.errorMsg = null;
 
     // console.log(f.value);
-    this.dataService.login(f.value).subscribe(data => {
+    this.auth.login(f.value).subscribe(data => {
 
       this.dataService.setToken(data);
       this.dataService.token.subscribe(i => this.token = i);

@@ -11,16 +11,19 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 export class DataService {
 
-  private readonly ApiUrlRoot = 'http://45.76.167.184:3000/api/';
-  private readonly ApiUrlUsers = this.ApiUrlRoot + 'users/';
-  private readonly ApiUrlAddress = this.ApiUrlRoot + 'addresses/';
-  private readonly ApiUrlHr = this.ApiUrlRoot + 'hr/';
-  private readonly ApiUrlDepartments = this.ApiUrlRoot + 'departments/';
-  private readonly ApiUrlRoles = this.ApiUrlRoot + 'roles/';
-  private readonly ApiUrlApps = this.ApiUrlRoot + 'apps/';
-  private readonly ApiUrlAuth = this.ApiUrlRoot + 'auth/';
-  private readonly ApiUrlSignup = this.ApiUrlRoot + 'signup/';
-  private readonly ApiUrlSettings = this.ApiUrlRoot + 'settings/';
+  private readonly apiRootUrl = 'http://45.76.167.184:3000/api/';
+  private readonly ApiUrlUsers = this.apiRootUrl + 'users/';
+  private readonly ApiUrlAddress = this.apiRootUrl + 'addresses/';
+  private readonly ApiUrlHr = this.apiRootUrl + 'hr/';
+  private readonly ApiUrlDepartments = this.apiRootUrl + 'departments/';
+  private readonly ApiUrlRoles = this.apiRootUrl + 'roles/';
+  private readonly ApiUrlApps = this.apiRootUrl + 'apps/';
+  private readonly ApiUrlAuth = this.apiRootUrl + 'auth/';
+  private readonly ApiUrlSignup = this.apiRootUrl + 'signup/';
+  private readonly ApiUrlSettings = this.apiRootUrl + 'settings/';
+
+  private _rootUrl = new BehaviorSubject<any>([]);
+  rootUrl = this._rootUrl.asObservable();
 
   private _token = new BehaviorSubject<any>([]);
   token = this._token.asObservable();
@@ -30,90 +33,58 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  setRootUrl(data: any) {
+    this._rootUrl.next(data);
+  }
+
+  getRootUrl() {
+    return this.apiRootUrl;
+  }
+
   /// ***********************[token]***********************
   setToken(data: any) {
     this._token.next(data);
   }
-  /// ***********************[token]***********************
 
   /// ***********************[theme]***********************
   setTheme(data: any) {
     this._theme.next(data);
   }
-  /// ***********************[theme]***********************
 
-  /// ***********************[settings]***********************
-  getUsers(): Observable<any> {
+  /// ***********************[data item]***********************
+  getDataItems(apiUrl: string): Observable<any> {
     const headers = this.setHttpHeaders();
-    return this.http.get(this.ApiUrlUsers, { headers: headers });
+    return this.http.get(this.apiRootUrl + apiUrl, { headers: headers });
   }
 
-  insertUser(body, token: string) {
+  insertDataItem(body, apiUrl: string) {
     const headers = this.setHttpHeaders();
-    return this.http.post(this.ApiUrlUsers, body, { headers: headers });
+    return this.http.post(this.apiRootUrl + apiUrl, body, { headers: headers });
   }
 
-  updateUser(id: string, body, token: string) {
+  updateDataItem(id: string, body, apiUrl: string) {
     const headers = this.setHttpHeaders();
-    return this.http.put(this.ApiUrlUsers + id, body, { headers: headers });
+    return this.http.put(this.apiRootUrl + apiUrl + id, body, { headers: headers });
   }
 
-  deleteUser(id: string, token: string) {
+  deleteDataItem(id: string, apiUrl: string) {
     const headers = this.setHttpHeaders();
-    return this.http.delete(this.ApiUrlUsers + id, { headers: headers });
+    return this.http.delete(this.apiRootUrl + apiUrl + id, { headers: headers });
   }
 
-  getUserById(id: string, token: string): any {
+  getDataItemById(id: string, apiUrl: string): any {
     const headers = this.setHttpHeaders();
-    return this.http.get(this.ApiUrlUsers + id, { headers: headers });
-  }
-  /// ***********************[settings]***********************
-
-  /// ***********************[login]***********************
-  login(user): Observable<any> {
-    const headers = this.setHttpHeadersLogin();
-
-    return this.http.post(this.ApiUrlAuth, user, { headers: headers });
-  }
-  /// ***********************[login]***********************
-
-  /// ***********************[settings]***********************
-  getSettings(token: string): Observable<any> {
-    const headers = this.setHttpHeaders();
-    return this.http.get(this.ApiUrlSettings, { headers: headers });
+    return this.http.get(this.apiRootUrl + apiUrl + id, { headers: headers });
   }
 
-  insertSettings(body, token: string) {
-    const headers = this.setHttpHeaders();
-    return this.http.post(this.ApiUrlSettings, body, { headers: headers });
-  }
 
-  updateSettings(id: string, body, token: string) {
-    const headers = this.setHttpHeaders();
-    return this.http.put(this.ApiUrlSettings + id, body, { headers: headers });
-  }
-
-  deleteSettings(id: string, token: string) {
-    const headers = this.setHttpHeaders();
-    return this.http.delete(this.ApiUrlSettings + id, { headers: headers });
-  }
-
-  getSettingsById(id: string, token: string): any {
-    const headers = this.setHttpHeaders();
-    return this.http.get(this.ApiUrlSettings + id, { headers: headers });
-  }
-  /// ***********************[settings]***********************
-
-
-
-
-  private setHttpHeadersLogin() {
+  setHttpHeadersLogin() {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     return headers;
   }
 
-  private setHttpHeaders() {
+  setHttpHeaders() {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     let temToken = '';
