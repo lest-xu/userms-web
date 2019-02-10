@@ -17,8 +17,11 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.themes = ['primary', 'secondary', 'success', 'warning', 'danger'];
-    this.theme = 'danger';
+    // set default theme
+    this.dataService.setTheme('primary');
+    this.dataService.theme.subscribe(i => this.theme = i);
+    this.themes = ['primary', 'info', 'success', 'warning', 'danger'];
+
     this.dataService.token.subscribe(i => {
       this.token = i;
     });
@@ -31,6 +34,11 @@ export class NavBarComponent implements OnInit {
       localStorage.removeItem('x-auth-token');
 
     }
+  }
+
+  changeTheme(theme) {
+    this.dataService.setTheme(theme);
+    this.theme = theme;
   }
 
 

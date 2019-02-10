@@ -12,18 +12,22 @@ import { NavBarComponent } from 'src/app/navs/nav-bar/nav-bar.component';
 export class SigninComponent implements OnInit {
 
   token: [];
-  errorMsg: string;
+  theme: String;
+  errorMsg: String;
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     // get x-auth-token
     this.dataService.token.subscribe(i => this.token = i);
-    console.log(this.token.length > 0);
+
     if (this.token.length > 0) {
       // redirect to home page
       this.redirectHome();
     }
+
+    // get theme
+    this.dataService.theme.subscribe(i => this.theme = i);
 
   }
 

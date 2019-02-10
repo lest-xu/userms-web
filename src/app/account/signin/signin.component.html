@@ -12,7 +12,13 @@
       <span *ngIf="errorMsg" class="text-danger ">{{ this.errorMsg }}</span>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-block" type="submit" [ngClass]="{
+      'btn-primary': this.theme === 'primary',
+      'btn-info': this.theme === 'info',
+      'btn-success': this.theme === 'success',
+      'btn-warning': this.theme === 'warning',
+      'btn-danger': this.theme === 'danger'}
+      ">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; USERMS All rights reserved<br/> User Management System</p>
   </form>
 </div>

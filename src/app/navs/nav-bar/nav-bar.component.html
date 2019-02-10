@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark" [ngClass]="{
   'bg-primary': this.theme === 'primary',
-  'bg-secondary': this.theme === 'secondary',
+  'bg-info': this.theme === 'info',
   'bg-success': this.theme === 'success',
   'bg-warning': this.theme === 'warning',
   'bg-danger': this.theme === 'danger'}
@@ -59,11 +59,11 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
           <a *ngFor="let item of themes" class="dropdown-item" [ngClass]="{
             'bg-primary': item === 'primary',
-            'bg-secondary': item === 'secondary',
+            'bg-info': item === 'info',
             'bg-success': item === 'success',
             'bg-warning': item === 'warning',
             'bg-danger': item === 'danger'}
-            " >{{item}}</a>
+            " (click)="changeTheme(item)">{{item}}</a>
         </div>
       </li>
     </ul>

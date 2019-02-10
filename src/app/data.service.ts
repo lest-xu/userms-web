@@ -25,6 +25,9 @@ export class DataService {
   private _token = new BehaviorSubject<any>([]);
   token = this._token.asObservable();
 
+  private _theme = new BehaviorSubject<any>([]);
+  theme = this._theme.asObservable();
+
   constructor(private http: HttpClient) { }
 
   /// ***********************[token]***********************
@@ -32,6 +35,12 @@ export class DataService {
     this._token.next(data);
   }
   /// ***********************[token]***********************
+
+  /// ***********************[theme]***********************
+  setTheme(data: any) {
+    this._theme.next(data);
+  }
+  /// ***********************[theme]***********************
 
   /// ***********************[settings]***********************
   getUsers(): Observable<any> {
