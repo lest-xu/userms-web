@@ -25,6 +25,9 @@ export class DataService {
   private _token = new BehaviorSubject<any>([]);
   token = this._token.asObservable();
 
+  private _currentUser = new BehaviorSubject<any>([]);
+  currentUser = this._currentUser.asObservable();
+
   constructor(private http: HttpClient) { }
 
   /// ***********************[token]***********************
@@ -33,7 +36,14 @@ export class DataService {
   }
   /// ***********************[token]***********************
 
-  /// ***********************[settings]***********************
+
+  /// ***********************[currentUser]***********************
+  setCurrentUser(data: any) {
+    this._currentUser.next(data);
+  }
+  /// ***********************[currentUser]***********************
+
+  /// ***********************[Users]***********************
   getUsers(): Observable<any> {
     const headers = this.setHttpHeaders();
     return this.http.get(this.ApiUrlUsers, { headers: headers });
@@ -58,7 +68,7 @@ export class DataService {
     const headers = this.setHttpHeaders();
     return this.http.get(this.ApiUrlUsers + id, { headers: headers });
   }
-  /// ***********************[settings]***********************
+  /// ***********************[Users]***********************
 
   /// ***********************[login]***********************
   login(user): Observable<any> {

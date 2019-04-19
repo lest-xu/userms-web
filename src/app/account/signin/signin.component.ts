@@ -34,11 +34,11 @@ export class SigninComponent implements OnInit {
 
     // console.log(f.value);
     this.dataService.login(f.value).subscribe(data => {
-
       this.dataService.setToken(data);
       this.dataService.token.subscribe(i => this.token = i);
       localStorage.setItem('x-auth-token', data);
 
+      console.log(this.token);
       // redirect to home page
       this.redirectHome();
     }, err => {
