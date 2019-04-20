@@ -2,5 +2,41 @@
 @import 'styles-metarial.css';
 @import "~font-awesome/css/font-awesome.css";
 
-html, body { height: 100%; }
+html, body { padding-top: 50px;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.navbar, .navbar {
+    background: #349aed;
+    background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
+    transition: box-shadow 200ms ease-in;
+}
+
+#footer li {
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;
+}
+#footer p {
+    clear: left;
+    margin-bottom: 0;
+}
+/* Section List Card Box */
+.section-listbox{-webkit-flex:none;-ms-flex:none;flex:none}
+.section-listbox:focus{outline:none}
+.section-listbox-root{display:flex;flex-direction:column;height:100%}
+.section-listbox-space-between{justify-content:space-between;height:auto;width:auto}
+.section-listbox-horizontally-center-content{justify-content:center}
+.section-listbox-vertically-center-content{align-items:center}
+.section-listbox.section-listbox-flex-vertical{display:flex;flex-direction:column}
+.section-listbox.section-listbox-flex-horizontal{display:flex;flex-direction:row}
+.section-listbox.section-scrollbox.section-listbox-space-between{-webkit-flex:auto;-ms-flex:auto;flex:auto}
+.section-listbox-space-between .section-listbox.section-scrollbox{-webkit-flex:auto;-ms-flex:auto;flex:auto}
+.section-listbox.section-scrollbox{-webkit-flex:1 1;-ms-flex:1 1;flex:1 1}
+.section-listbox-hoverable:hover{background-color:rgba(0,0,0,.03);cursor:pointer}
+.section-listbox-pane-keyline-margin{margin:0 24px}
+.section-listbox.section-listbox-drop-shadow,.section-listbox.section-scrollbox.section-listbox-scrolled::before{box-shadow:inset 0 14px 10px -10px rgba(60, 64, 67, 0.28)}
+.section-listbox.section-scrollbox.section-listbox-scrolled::before{z-index:1;content:'';width:100%;height:14px;position:absolute}
+.print-mode .section-listbox-root{display:block;height:auto}
+.print-mode .section-listbox.section-scrollbox{overflow-y:visible;-webkit-flex:none;-ms-flex:none;flex:none}
+.section-listbox.section-cardbox{box-sizing:border-box;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.2);margin-top:8px;margin-left:8px;position:relative;}
+/* Section List Card Box */
