@@ -2,7 +2,7 @@
 @import 'styles-metarial.css';
 @import "~font-awesome/css/font-awesome.css";
 
-html, body { padding-top: 50px;}
+html, body { padding-top: 45px;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .navbar, .navbar {
